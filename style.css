@@ -1,0 +1,152 @@
+/* General Body Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #87CEEB, #B0E0E6); /* Sky and light blue gradient */
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Game Container */
+#gameContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+}
+
+/* Map Container for scrolling */
+#mapContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #D1E8E2;
+}
+
+/* Canvas Area */
+#gameCanvas {
+    position: absolute;
+    background-color: #D1E8E2; /* Light canvas background */
+    z-index: 1;
+    transition: transform 0.1s ease-out; /* Smooth scrolling transition */
+}
+
+/* UI Container (overlay) */
+#uiContainer {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    color: #333;
+    z-index: 2;
+}
+
+/* Health Bar Styling */
+#healthBars {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.health-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    margin-top: 5px;
+    transition: width 0.5s ease-in-out;
+}
+
+#playerHealthBar {
+    background-color: #4CAF50;
+}
+
+#enemyHealthBar {
+    background-color: #f44336;
+}
+
+/* Stats Section */
+#stats {
+    font-size: 16px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Buttons Styling */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: linear-gradient(145deg, #FFD700, #FFA500);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+}
+
+button:hover {
+    background: linear-gradient(145deg, #FFA500, #FFD700);
+    transform: scale(1.05);
+}
+
+/* Battle Text */
+#battleText {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: #444;
+    font-weight: bold;
+}
+
+/* Action Text */
+#actionText {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 800px) {
+    #uiContainer {
+        width: 250px;
+        font-size: 14px;
+    }
+
+    #gameCanvas {
+        width: 90%;
+        height: 70%;
+    }
+}
+
+@media (max-width: 600px) {
+    #uiContainer {
+        width: 200px;
+        padding: 15px;
+        font-size: 12px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+
+    #gameCanvas {
+        width: 90%;
+        height: 60%;
+    }
+}
