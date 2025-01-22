@@ -3,39 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashe's Journey</title>
+    <title>Square Quest</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="gameContainer">
-        <!-- Scrollable Map -->
-        <div id="mapContainer">
-            <canvas id="gameCanvas" width="1200" height="800"></canvas>
-        </div>
-        <!-- UI Overlay -->
-        <div id="uiContainer">
-            <div id="healthBars">
-                <div id="playerHealth">
-                    <span>Ashe's Health: </span><div class="health-bar" id="playerHealthBar"></div>
-                </div>
-                <div id="enemyHealth">
-                    <span>Enemy Health: </span><div class="health-bar" id="enemyHealthBar"></div>
-                </div>
-            </div>
-            <div id="stats">
-                <p>Level: <span id="playerLevel">1</span></p>
-                <p>XP: <span id="playerXP">0</span> / 100</p>
-            </div>
-            <div id="battleControls">
-                <button id="attackBtn">Attack</button>
-                <button id="itemBtn">Use Item</button>
-                <button id="runBtn">Run</button>
-            </div>
-            <div id="battleText">
-                <span id="actionText">Ashe's journey begins...</span>
-            </div>
-        </div>
-    </div>
-    <script src="game.js"></script>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <script src="script.js"></script>
 </body>
 </html>
