@@ -8,49 +8,53 @@ const mapContainer = document.getElementById('mapContainer');
 let ashe = {
     x: 100,
     y: 100,
-    size: 30,
-    health: 100,
-    maxHealth: 100,
-    level: 1,
-    xp: 0,
+    width: 30,
+    height: 30,
     speed: 5,
-    color: 'green',
-    attackPower: 10,
+    image: new Image(),
 };
 
-// Example NPCs and Buildings
+// NPC and Building Data
 let npcs = [
-    { x: 300, y: 300, size: 30, color: 'blue', name: 'NPC 1' },
-    { x: 500, y: 500, size: 30, color: 'yellow', name: 'NPC 2' },
+    { x: 300, y: 300, width: 30, height: 30, name: 'NPC 1', interacted: false },
+    { x: 500, y: 500, width: 30, height: 30, name: 'NPC 2', interacted: false },
 ];
 
 let buildings = [
-    { x: 200, y: 150, width: 100, height: 100, color: '#8B4513' }, // A simple building (brown)
-    { x: 600, y: 600, width: 120, height: 120, color: '#D2691E' }, // Another building
+    { x: 200, y: 150, width: 100, height: 100, color: '#8B4513', name: 'Shop' },
+    { x: 600, y: 600, width: 120, height: 120, color: '#D2691E', name: 'Inn' },
 ];
+
+// Player sprite
+ashe.image.src = 'path_to_ashe_sprite.png'; // Use a sprite image for Ashe
+
+// Load NPC and building images (you can replace these with real images later)
+let npcImage = new Image();
+npcImage.src = 'path_to_npc_sprite.png'; // Replace with actual NPC sprite image
+
+let buildingImage = new Image();
+buildingImage.src = 'path_to_building_sprite.png'; // Replace with actual building sprite
 
 // Draw the player, NPCs, and buildings
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw Buildings
+    // Draw buildings
     buildings.forEach(building => {
         ctx.fillStyle = building.color;
-        ctx.fillRect(building.x, building.y, building.width, building.height);
+        ctx.drawImage(buildingImage, building.x, building.y, building.width, building.height);
     });
 
     // Draw NPCs
     npcs.forEach(npc => {
-        ctx.fillStyle = npc.color;
-        ctx.fillRect(npc.x, npc.y, npc.size, npc.size);
+        ctx.drawImage(npcImage, npc.x, npc.y, npc.width, npc.height);
     });
 
     // Draw Ashe
-    ctx.fillStyle = ashe.color;
-    ctx.fillRect(ashe.x, ashe.y, ashe.size, ashe.size);
+    ctx.drawImage(ashe.image, ashe.x, ashe.y, ashe.width, ashe.height);
 }
 
-// Update player's position based on key presses
+// Player movement
 let keys = {};
 document.addEventListener('keydown', (e) => {
     keys[e.key] = true;
@@ -60,7 +64,6 @@ document.addEventListener('keyup', (e) => {
     keys[e.key] = false;
 });
 
-// Move player on the map
 function updatePlayerPosition() {
     if (keys['ArrowUp']) ashe.y -= ashe.speed;
     if (keys['ArrowDown']) ashe.y += ashe.speed;
@@ -73,23 +76,23 @@ function checkBuildingCollision() {
     buildings.forEach(building => {
         if (
             ashe.x < building.x + building.width &&
-            ashe.x + ashe.size > building.x &&
+            ashe.x + ashe.width > building.x &&
             ashe.y < building.y + building.height &&
-            ashe.y + ashe.size > building.y
+            ashe.y + ashe.height > building.y
         ) {
-            alert("You collided with a building!");
+            alert(`You entered the ${building.name}!`);
         }
     });
 }
 
-// Check if Ashe interacts with NPCs
+// Check interaction with NPCs
 function checkNPCInteraction() {
     npcs.forEach(npc => {
         if (
-            ashe.x < npc.x + npc.size &&
-            ashe.x + ashe.size > npc.x &&
-            ashe.y < npc.y + npc.size &&
-            ashe.y + ashe.size > npc.y
+            ashe.x < npc.x + npc.width &&
+            ashe.x + ashe.width > npc.x &&
+            ashe.y < npc.y + npc.height &&
+            ashe.y + ashe.height > npc.y
         ) {
             alert(`You interacted with ${npc.name}!`);
         }
